@@ -1,0 +1,27 @@
+@import "../../../styles/Variables.scss";
+
+.category {
+  font-size: 2rem;
+  &__header {
+    background-color: $color-primary;
+    cursor: pointer;
+  }
+  &__name {
+    position: relative;
+  }
+  &__data {
+    position: relative;
+    transition: all 0.5s ease;
+    &-item {
+      position: relative;
+      display: flex;
+      &--label {
+        position: relative;
+        margin-right: 3rem;
+      }
+      &--value {
+        position: relative;
+      }
+    }
+  }
+}

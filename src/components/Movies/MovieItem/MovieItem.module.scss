@@ -1,0 +1,18 @@
+@import "../../../styles/Variables.scss";
+
+.movie {
+  display: flex;
+  background-color: $color-secondary;
+  margin-block: 1rem;
+  &__name {
+    margin-right: auto;
+  }
+  &__controls {
+    display: flex;
+    &--edit {
+      margin-right: 1rem;
+    }
+    &--delete {
+    }
+  }
+}
