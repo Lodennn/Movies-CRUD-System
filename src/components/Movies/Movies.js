@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Fragment } from "react/cjs/react.production.min";
 import { isArrayEmpty } from "../../helpers/arrays";
 import { categoriesActions } from "../../store/categories-slice";
+import { snackbarActions } from "../../store/snackbar-slice";
 import MovieItem from "./MovieItem/MovieItem";
 import classes from "./Movies.module.scss";
 
@@ -19,6 +20,12 @@ const Movies = (props) => {
 
   const onDeleteMovieHandler = (movieId) => {
     dispatch(categoriesActions.deleteMovie({ movieId, categoryId }));
+    dispatch(
+      snackbarActions.showSnackBar({
+        type: "success",
+        message: "Movie Deleted Successfully",
+      })
+    );
   };
 
   const onCloseUpdateMode = (isUpdated) => {
