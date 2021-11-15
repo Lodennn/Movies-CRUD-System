@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { categoriesActions } from "../../store/categories-slice";
+import { snackbarActions } from "../../store/snackbar-slice";
 import classes from "./MovieUpdateForm.module.scss";
 
 const MovieUpdateForm = (props) => {
@@ -27,6 +28,12 @@ const MovieUpdateForm = (props) => {
           movieId,
           categoryId,
           newName: enteredInputValue,
+        })
+      );
+      dispatch(
+        snackbarActions.showSnackBar({
+          type: "success",
+          message: "Movie Updated Successfully",
         })
       );
       isMovieUpdated(true);

@@ -6,6 +6,7 @@ import { categoriesActions } from "../../store/categories-slice";
 import Form from "../UI/Form";
 import classes from "./NewMovie.module.scss";
 import formClasses from "../UI/Form.module.scss";
+import { snackbarActions } from "../../store/snackbar-slice";
 
 const NewMovie = (props) => {
   const { categoryId, hideForm, showForm } = props;
@@ -61,6 +62,12 @@ const NewMovie = (props) => {
   function dispatchAddMovieAction() {
     dispatch(categoriesActions.updateCategoryMovies({ categoryId, newMovie }));
     hideForm();
+    dispatch(
+      snackbarActions.showSnackBar({
+        type: "success",
+        message: "Movie Added Successfully",
+      })
+    );
   }
 
   function generateRandomRating() {

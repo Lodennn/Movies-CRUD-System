@@ -57,7 +57,7 @@ const Form = (props) => {
             ></textarea>
           </div>
           <button type="submit" className="btn btn--primary">
-            Add Movie
+            Add
           </button>
         </form>
       )}

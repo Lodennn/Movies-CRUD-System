@@ -4,6 +4,7 @@ import { notEmptyString } from "../../helpers/strings";
 import useForm from "../../hooks/use-form";
 import useInput from "../../hooks/use-input";
 import { categoriesActions } from "../../store/categories-slice";
+import { snackbarActions } from "../../store/snackbar-slice";
 import Button from "../UI/Button";
 import Form from "../UI/Form";
 // import classes from "./NewCategory.module.scss";
@@ -67,6 +68,12 @@ const NewCategory = () => {
       })
     );
     hideFormHandler();
+    dispatch(
+      snackbarActions.showSnackBar({
+        type: "success",
+        message: "Category Added Successfully",
+      })
+    );
   }
 
   return (

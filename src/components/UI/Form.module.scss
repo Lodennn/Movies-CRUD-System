@@ -1,4 +1,5 @@
 @import "../../styles/Variables.scss";
+@import "../../styles/Responsive.scss";
 
 .form {
   margin-top: 3rem;
@@ -9,6 +10,9 @@
     width: 30vw;
     margin: auto;
     gap: 3rem;
+    @include respond(tab-port) {
+      width: auto;
+    }
   }
   &__input,
   &__textarea {
