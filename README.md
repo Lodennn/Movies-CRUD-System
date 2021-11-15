@@ -20,34 +20,34 @@ localStorage through it.
 
 ## Features
 
-### Full CRUD System
+### `Full CRUD System`
 
 The user can create, read, update and delete movies and categories in an easy way with a real good ui design.
 
-### SnackBar
+### `SnackBar`
 
 I've created a `SnackBar` logic to inform the user what is happening in the system when he interacts with our system.
 
 ## Technologies[Development]
 
-### Custom Hooks
+### `Custom Hooks`
 
 I've created two main custom hooks which helped me out in `Form` especially `use-input` and `use-form` which
 saved me alot of time, made me avoid `DRY` Principle, and it makes things really dynamic.
 
-### SASS
+### `SASS`
 
 I've used sass as css pre-processor to manage my styling in an efficient and fast way and it was really helpful.
 
-### Git/Github
+### `Git/Github`
 
 I've used Git as a version controller to trace my project files and to make it organized.
 
-### Dynamic Responsive Design
+### `Dynamic Responsive Design`
 
 I've used sass to manage my responsive design(based on fonts) by adding `mixins` that takes a parameter of screen-width
 and for that it detects which style i want to add as content.
 
-## UI Design
+## `UI Design`
 
 For UI Design I've used `Adobe XD` to design the UI to make it easier to imagine the system and the styling in development process.
