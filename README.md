@@ -28,6 +28,11 @@ The user can create, read, update and delete movies and categories in an easy wa
 
 I've created a `SnackBar` logic to inform the user what is happening in the system when he interacts with our system.
 
+### `Validations`
+
+I've added a validation system for each `Form` to make the system secure and to make sure that the user deals with the
+system in a right way.
+
 ## Technologies[Development]
 
 ### `Custom Hooks`
