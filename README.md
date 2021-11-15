@@ -19,7 +19,6 @@ localStorage through it.
 
 
 ## Features
-SrvKee
 
 ### Full CRUD System
 
@@ -30,7 +29,6 @@ The user can create, read, update and delete movies and categories in an easy wa
 I've created a `SnackBar` logic to inform the user what is happening in the system when he interacts with our system.
 
 ## Technologies[Development]
-SrvKee
 
 ### Custom Hooks
 
