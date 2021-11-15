@@ -10,7 +10,7 @@ I've used Redux as a wide-state managemenet system to handle global state throug
 
 ### `Redux Toolkit`
 
-I've used Redux Toolkit to take advantage of `imguer` and the flexible functionalities of Redux Toolkit package.
+I've used Redux Toolkit to take advantage of `immer` and the flexible functionalities of Redux Toolkit package.
 
 ### `Redux Persist`
 
