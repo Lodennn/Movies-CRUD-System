@@ -1,16 +1,65 @@
 @import "../../../styles/Variables.scss";
+@import "../../../styles/Responsive.scss";
 
 .movie {
-  display: flex;
-  background-color: $color-secondary;
-  margin-block: 1rem;
+  background: $color-white;
+  box-shadow: 3px 3px 1rem $color-gray-light-5;
+  padding: 2rem;
+  position: relative;
+  margin-bottom: 4rem;
+  border-radius: 3px;
+  display: grid;
+
+  @include respond(phone) {
+    border: 1px solid #f1f1f1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -3rem;
+    left: -1.5rem;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: $color-primary;
+    z-index: -1;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+  &__rate {
+    display: flex;
+    &-star {
+      color: $color-gray-light-5;
+      &--active {
+        color: $color-tertiary;
+      }
+    }
+  }
+
   &__name {
-    margin-right: auto;
+    font-weight: 600;
+    font-size: 2rem;
+    transform: translateY(-0.5rem);
+    margin-top: 2rem;
+  }
+  &__desc {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    margin: 2rem 0;
   }
   &__controls {
     display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 56.25em) {
+      flex-direction: column;
+      gap: 2rem;
+    }
     &--edit {
-      margin-right: 1rem;
+      // backg
     }
     &--delete {
     }

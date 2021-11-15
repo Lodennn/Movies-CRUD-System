@@ -1,6 +1,14 @@
 @import "../../styles/Variables.scss";
+@import "../../styles/Responsive.scss";
 
 .wrapper {
   background-color: $color-white;
-  margin-top: 3rem;
+  border-radius: 3px;
+  padding: 3rem;
+  border: 1px solid $color-gray-light;
+  position: relative;
+  z-index: 9;
+  @include respond(phone) {
+    padding-inline: 0.5rem;
+  }
 }

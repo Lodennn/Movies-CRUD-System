@@ -1,11 +1,10 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { categoriesActions } from "../../store/categories-slice";
 import classes from "./NewMovie.module.scss";
 
 const NewMovie = (props) => {
-  const { categoryId } = props;
+  const { categoryId, hideForm } = props;
 
   const movieNameRef = useRef();
   const movieDescRef = useRef();
@@ -26,6 +25,8 @@ const NewMovie = (props) => {
     };
 
     dispatch(categoriesActions.updateCategoryMovies({ categoryId, newMovie }));
+
+    hideForm();
   };
 
   const generateRandomRating = () => {
@@ -40,15 +41,12 @@ const NewMovie = (props) => {
         <input
           ref={movieNameRef}
           type="text"
-          placeholder="Enter a name"
+          placeholder="Name"
           className={classes["new-movie__input"]}
         />
-        <textarea
-          ref={movieDescRef}
-          placeholder="Enter a description"
-        ></textarea>
-        <button type="submit" className="btn btn--submit">
-          Add
+        <textarea ref={movieDescRef} placeholder="Description"></textarea>
+        <button type="submit" className="btn btn--primary">
+          Add Movie
         </button>
       </form>
     </div>

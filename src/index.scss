@@ -1,4 +1,5 @@
 @import "./styles/Variables.scss";
+@import "./styles/Responsive.scss";
 
 *,
 *::before,
@@ -10,23 +11,106 @@
 
 html {
   font-size: 62.5%;
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+  @include respond(phone) {
+    font-size: 37.5%;
+  }
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: $font-primary, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $default-surface-color;
-  padding-inline: 2rem;
+  background-image: linear-gradient(
+    to bottom,
+    $color-primary,
+    $color-primary-dark
+  );
+  padding: 5rem;
   box-sizing: border-box;
+  font-weight: 400;
+  color: $color-gray-dark;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+////////////////
+.btn {
+  color: $color-white;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+  padding: 1rem;
+  width: 15rem;
+  cursor: pointer;
+  @include respond(phone) {
+    width: auto;
+  }
+  &--primary {
+    background: $color-primary;
+  }
+  &--edit {
+    background: $color-secondary;
+  }
+  &--delete {
+    background: $color-danger;
+  }
+  &--half-width {
+    width: auto;
+    padding: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+input,
+textarea {
+  padding: 0.5rem 1rem;
+  border: 1px solid $color-gray-light;
+  border-radius: 3px;
+  height: 4rem;
+  width: 100%;
+  &:focus {
+    outline: 1px solid $color-primary;
+  }
+}
+////////////////
+.wrapper__special {
+  position: relative;
+  &--main-element {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -0.7rem;
+    width: 80%;
+    height: 5rem;
+    background-image: linear-gradient(
+      to right,
+      $color-primary,
+      $color-primary-dark
+    );
+    border-radius: 10rem;
+    z-index: 1;
+  }
+}
+
+.title {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 2.5rem;
 }
 
 .show-category {
@@ -34,4 +118,53 @@ code {
 }
 .hide-category {
   display: none;
+}
+.fix-icon {
+  transform: translateY(2px);
+}
+::-webkit-input-placeholder {
+  color: $color-gray-light-2;
+}
+
+/// UTILITES
+.btn-pos-right {
+  float: initial;
+  position: absolute;
+  top: 3rem;
+  right: 4rem;
+}
+
+.mt-xs {
+  margin-top: 1rem;
+}
+.mt-sm {
+  margin-top: 2rem;
+}
+.mt-md {
+  margin-top: 3rem;
+}
+.mt-lg {
+  margin-top: 4rem;
+}
+.mt-xl {
+  margin-top: 5rem;
+}
+.mb-xs {
+  margin-bottom: 1rem;
+}
+.mb-sm {
+  margin-bottom: 2rem;
+}
+.mb-md {
+  margin-bottom: 3rem;
+}
+.mb-lg {
+  margin-bottom: 4rem;
+}
+.mb-xl {
+  margin-bottom: 5rem;
+}
+.separator {
+  border: none;
+  border: 1px solid $color-gray-light-4;
 }

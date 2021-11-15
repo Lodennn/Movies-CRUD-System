@@ -11,7 +11,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import moviesReducer from "./movies-slice";
 
 const persistConfig = {
   key: "root",
@@ -22,7 +21,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, categoriesReducer);
 
 const store = configureStore({
-  reducer: { categories: persistedReducer, movies: moviesReducer },
+  reducer: { categories: persistedReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

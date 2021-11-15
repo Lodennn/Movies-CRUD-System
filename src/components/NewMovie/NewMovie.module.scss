@@ -1,0 +1,27 @@
+@import "../../styles/Variables.scss";
+
+.new-movie {
+  margin-top: 3rem;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30vw;
+    margin: auto;
+    gap: 3rem;
+  }
+  &__input,
+  &__textarea {
+    padding: 0.5rem 1rem;
+    border: 1px solid $color-gray-light;
+    border-radius: 3px;
+    height: 4rem;
+    &:focus {
+      outline: 1px solid $color-primary-dark;
+    }
+  }
+  &__textarea {
+    height: 10rem;
+    resize: none;
+  }
+}

@@ -14,23 +14,26 @@ const Categories = (props) => {
   };
 
   return (
-    <Wrapper>
-      <h2>Movies Data</h2>
-      <div className={classes.categories}>
-        {categories.map((category, index) => {
-          return (
-            <CategoryItem
-              key={category.id}
-              category={category}
-              activeCategoryClass={
-                activeCategory === index ? "show-category" : "hide-category"
-              }
-              onClick={addActiveCategoryClass.bind(null, index)}
-            />
-          );
-        })}
-      </div>
-    </Wrapper>
+    <div className="mt-xl wrapper__special">
+      <span className="wrapper__special--main-element"></span>
+      <Wrapper>
+        <h2 className="title">Categories</h2>
+        <div className={classes.categories}>
+          {categories.map((category, index) => {
+            return (
+              <CategoryItem
+                key={category.id}
+                category={category}
+                activeCategoryClass={
+                  activeCategory === index ? "show-category" : "hide-category"
+                }
+                onClick={addActiveCategoryClass.bind(null, index)}
+              />
+            );
+          })}
+        </div>
+      </Wrapper>
+    </div>
   );
 };
 

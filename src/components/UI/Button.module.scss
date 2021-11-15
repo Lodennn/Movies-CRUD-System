@@ -1,0 +1,24 @@
+@import "../../styles/Variables.scss";
+
+.button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    color: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-primary;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  &__text {
+    font-size: 1.7rem;
+    font-family: $font-primary;
+    cursor: pointer;
+  }
+}

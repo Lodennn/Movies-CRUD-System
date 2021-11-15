@@ -1,0 +1,13 @@
+.movies {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 8rem;
+  padding-inline: 6rem;
+  @media screen and (max-width: 75em) {
+    grid-template-columns: 1fr;
+  }
+  @media screen and (max-width: 37.5em) {
+    padding-inline: 0;
+  }
+}

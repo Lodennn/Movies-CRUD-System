@@ -1,16 +1,23 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addCategoriesToStorage,
-  categoriesActions,
-} from "../../store/categories-slice";
+import { categoriesActions } from "../../store/categories-slice";
+import Button from "../UI/Button";
 import classes from "./NewCategory.module.scss";
 
 const NewCategory = () => {
+  const [showForm, setShowForm] = useState(false);
+
   const categoryNameInputRef = useRef();
   const categoryDescInputRef = useRef();
 
   const dispatch = useDispatch();
+
+  const showFormHandler = () => {
+    setShowForm(true);
+  };
+  const hideFormHandler = () => {
+    setShowForm(false);
+  };
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -29,29 +36,35 @@ const NewCategory = () => {
         category: newCategory,
       })
     );
-    // dispatch(addCategoriesToStorage());
+
+    hideFormHandler();
   };
 
   return (
     <div className={classes["new-category"]}>
-      <form
-        onSubmit={submitFormHandler}
-        className={classes["new-category__form"]}
-      >
-        <input
-          ref={categoryNameInputRef}
-          type="text"
-          placeholder="Enter a name"
-          className={classes["new-category__input"]}
-        />
-        <textarea
-          placeholder="Enter a description"
-          ref={categoryDescInputRef}
-        ></textarea>
-        <button type="submit" className="btn btn--submit">
-          Add
-        </button>
-      </form>
+      {!showForm ? (
+        <Button text="Add Category" onClick={showFormHandler} />
+      ) : (
+        <form
+          onSubmit={submitFormHandler}
+          className={classes["new-category__form"]}
+        >
+          <input
+            ref={categoryNameInputRef}
+            type="text"
+            placeholder="Name"
+            className={classes["new-category__input"]}
+          />
+          <textarea
+            placeholder="Description"
+            ref={categoryDescInputRef}
+            className={classes["new-category__textarea"]}
+          ></textarea>
+          <button type="submit" className="btn btn--primary">
+            Add Category
+          </button>
+        </form>
+      )}
     </div>
   );
 };

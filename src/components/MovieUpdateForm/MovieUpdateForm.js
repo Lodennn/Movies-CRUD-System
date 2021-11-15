@@ -46,17 +46,15 @@ const MovieUpdateForm = (props) => {
         placeholder="Enter new name"
         value={movieNameInput}
         onChange={movieNameInputChangeHandler}
+        autoFocus={true}
       />
       <div className={classes["movie-update-form__controls"]}>
-        <button
-          type="submit"
-          className={classes["movie-update-form__controls--ok"]}
-        >
+        <button type="submit" className="btn btn--edit btn--half-width">
           OK
         </button>
         <button
           type="button"
-          className={classes["movie-update-form__controls--cancel"]}
+          className="btn btn--delete btn--half-width"
           onClick={cancelUpdateHandler}
         >
           CANCEL

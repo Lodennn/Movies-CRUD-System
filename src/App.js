@@ -1,12 +1,13 @@
 import Categories from "./components/Categories/Categories";
 import NewCategory from "./components/NewCategory/NewCategory";
+import Wrapper from "./components/UI/Wrapper";
 
 function App() {
   return (
-    <div className="App">
+    <Wrapper>
       <NewCategory />
       <Categories />
-    </div>
+    </Wrapper>
   );
 }
 

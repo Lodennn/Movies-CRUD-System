@@ -26,23 +26,26 @@ const Movies = (props) => {
   };
 
   return (
-    <div className={classes.movies}>
-      {moviesList &&
-        isArrayEmpty(moviesList) &&
-        moviesList.map((movie) => {
-          return (
-            <MovieItem
-              key={movie.id}
-              movie={movie}
-              onDelete={onDeleteMovieHandler.bind(null, movie.id)}
-              onUpdate={onUpdateMovieHandler.bind(null, movie.id)}
-              editInput={editInput}
-              categoryId={categoryId}
-              closeUpdateMode={onCloseUpdateMode}
-            />
-          );
-        })}
-    </div>
+    <Fragment>
+      <h2 className="title mb-xs">Movies</h2>
+      <div className={classes.movies}>
+        {moviesList &&
+          isArrayEmpty(moviesList) &&
+          moviesList.map((movie) => {
+            return (
+              <MovieItem
+                key={movie.id}
+                movie={movie}
+                onDelete={onDeleteMovieHandler.bind(null, movie.id)}
+                onUpdate={onUpdateMovieHandler.bind(null, movie.id)}
+                editInput={editInput}
+                categoryId={categoryId}
+                closeUpdateMode={onCloseUpdateMode}
+              />
+            );
+          })}
+      </div>
+    </Fragment>
   );
 };
 

@@ -5,13 +5,6 @@ const initialState = {
   categories: Data.categories,
 };
 
-const findMoviesOfTargetCategory = (categories, categoryId) => {
-  const targetCategoryIndex = categories.findIndex(
-    (category) => category.id === categoryId
-  );
-  return categories[targetCategoryIndex].movies;
-};
-
 const categoriesSlice = createSlice({
   name: "categories",
   initialState: initialState,

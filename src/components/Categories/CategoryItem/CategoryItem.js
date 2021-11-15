@@ -3,18 +3,39 @@ import { isArrayEmpty } from "../../../helpers/arrays";
 import Movies from "../../Movies/Movies";
 import NewMovie from "../../NewMovie/NewMovie";
 import classes from "./CategoryItem.module.scss";
+import { FaBarcode, FaChevronDown } from "react-icons/fa";
+import Wrapper from "../../UI/Wrapper";
+import Button from "../../UI/Button";
+import { useState } from "react";
 
 const CategoryItem = (props) => {
   const { activeCategoryClass, onClick } = props;
   const { id, name, movies, desc } = props.category;
 
+  const [showForm, setShowForm] = useState(false);
+
+  const showFormHandler = () => {
+    setShowForm(true);
+  };
+  const hideFormHandler = () => {
+    setShowForm(false);
+  };
+
   return (
     <Fragment>
       <div className={classes.category}>
         <header className={classes["category__header"]} onClick={onClick}>
+          <span className={classes["category__icon"]}>
+            <FaBarcode className="fix-icon" />
+          </span>
           <h3 className={classes["category__name"]}>{name}</h3>
+          <span className={classes["category__icon"]}>
+            <FaChevronDown className="fix-icon" />
+          </span>
         </header>
-        <div className={`${classes["category__data"]} ${activeCategoryClass}`}>
+        <Wrapper
+          className={`${classes["category__data"]} ${activeCategoryClass}`}
+        >
           <div className={classes["category__data-item"]}>
             <h5 className={classes["category__data-item--label"]}>Name</h5>
             <h5 className={classes["category__data-item--value"]}>{name}</h5>
@@ -27,18 +48,28 @@ const CategoryItem = (props) => {
               {desc ? desc : "Empty"}
             </h5>
           </div>
+          <hr className="separator separator--soft" />
+
           {/* New Movie Component */}
-          <NewMovie categoryId={id} />
+          {showForm ? (
+            <NewMovie categoryId={id} hideForm={hideFormHandler} />
+          ) : (
+            <Button
+              text="Add Movie"
+              className="btn-pos-right"
+              onClick={showFormHandler}
+            />
+          )}
           {/* New Movie Component */}
 
           {/* Movies Component */}
           {movies && isArrayEmpty(movies) ? (
             <Movies categoryId={id} moviesList={movies} />
           ) : (
-            "No Movies"
+            <p className="mt-sm">No Movies</p>
           )}
           {/* Movies Component */}
-        </div>
+        </Wrapper>
       </div>
     </Fragment>
   );

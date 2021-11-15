@@ -1,12 +1,31 @@
+@import "../../styles/Responsive.scss";
+
 .movie-update-form {
   display: flex;
-  margin-right: auto;
-  &__input {
+  @include respond(phone) {
+    flex-direction: column;
+    gap: 1rem;
   }
   &__controls {
+    display: flex;
+    margin-left: 2rem;
+    @include respond(phone) {
+      flex-direction: column;
+      margin-left: 0rem;
+      gap: 1rem;
+    }
     &--ok {
+      margin-right: 2rem;
+      @include respond(phone) {
+        margin-right: 0rem;
+      }
     }
     &--cancel {
+      display: flex;
+      margin-left: 2rem;
+      @include respond(phone) {
+        margin-left: 0rem;
+      }
     }
   }
 }
