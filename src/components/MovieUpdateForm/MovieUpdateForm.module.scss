@@ -1,0 +1,12 @@
+.movie-update-form {
+  display: flex;
+  margin-right: auto;
+  &__input {
+  }
+  &__controls {
+    &--ok {
+    }
+    &--cancel {
+    }
+  }
+}

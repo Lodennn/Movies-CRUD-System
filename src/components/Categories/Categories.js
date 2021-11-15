@@ -2,15 +2,14 @@ import { useState } from "react";
 import Wrapper from "../UI/Wrapper";
 import classes from "./Categories.module.scss";
 import CategoryItem from "./CategoryItem/CategoryItem";
-import Data from "../../db/movies-data.json";
+import { useSelector } from "react-redux";
 
 const Categories = (props) => {
-  // const {categories} =
-  const [categories, setCategories] = useState(Data.categories);
+  const { categories } = useSelector((state) => state.categories);
+
   const [activeCategory, setActiveCategory] = useState(0);
 
   const addActiveCategoryClass = (categoryIndex, e) => {
-    console.log("categoryIndex: ", categoryIndex);
     setActiveCategory(categoryIndex);
   };
 
@@ -19,7 +18,6 @@ const Categories = (props) => {
       <h2>Movies Data</h2>
       <div className={classes.categories}>
         {categories.map((category, index) => {
-          console.log(category);
           return (
             <CategoryItem
               key={category.id}

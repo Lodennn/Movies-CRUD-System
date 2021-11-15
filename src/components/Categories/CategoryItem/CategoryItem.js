@@ -1,11 +1,12 @@
 import { Fragment } from "react/cjs/react.production.min";
+import { isArrayEmpty } from "../../../helpers/arrays";
 import Movies from "../../Movies/Movies";
 import NewMovie from "../../NewMovie/NewMovie";
 import classes from "./CategoryItem.module.scss";
 
 const CategoryItem = (props) => {
   const { activeCategoryClass, onClick } = props;
-  const { name, movies, description } = props.category;
+  const { id, name, movies, desc } = props.category;
 
   return (
     <Fragment>
@@ -23,15 +24,19 @@ const CategoryItem = (props) => {
               Description
             </h5>
             <h5 className={classes["category__data-item--value"]}>
-              {description ? description : "Empty"}
+              {desc ? desc : "Empty"}
             </h5>
           </div>
           {/* New Movie Component */}
-          <NewMovie />
+          <NewMovie categoryId={id} />
           {/* New Movie Component */}
 
           {/* Movies Component */}
-          <Movies moviesList={movies} />
+          {movies && isArrayEmpty(movies) ? (
+            <Movies categoryId={id} moviesList={movies} />
+          ) : (
+            "No Movies"
+          )}
           {/* Movies Component */}
         </div>
       </div>
