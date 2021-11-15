@@ -52,7 +52,11 @@ const CategoryItem = (props) => {
 
           {/* New Movie Component */}
           {showForm ? (
-            <NewMovie categoryId={id} hideForm={hideFormHandler} />
+            <NewMovie
+              categoryId={id}
+              hideForm={hideFormHandler}
+              showForm={showForm}
+            />
           ) : (
             <Button
               text="Add Movie"
