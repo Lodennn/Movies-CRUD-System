@@ -51,7 +51,7 @@ const Form = (props) => {
             </div>
             <textarea
               placeholder="Description"
-              className={`${classes["new-category__textarea"]} ${categoryDescInputClasses}`}
+              className={`${classes["form__textarea"]} ${categoryDescInputClasses}`}
               value={categoryDescInputValue}
               onChange={onChangeCategoryDescHandler}
             ></textarea>

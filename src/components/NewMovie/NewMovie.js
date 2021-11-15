@@ -5,6 +5,7 @@ import useInput from "../../hooks/use-input";
 import { categoriesActions } from "../../store/categories-slice";
 import Form from "../UI/Form";
 import classes from "./NewMovie.module.scss";
+import formClasses from "../UI/Form.module.scss";
 
 const NewMovie = (props) => {
   const { categoryId, hideForm, showForm } = props;
@@ -20,9 +21,9 @@ const NewMovie = (props) => {
 
   let categoryNameInputClasses =
     categoryNameHasError && notEmptyString(categoryNameInputValue)
-      ? `${classes["new-category__input"]} invalid`
+      ? `${formClasses["form__input"]} invalid`
       : notEmptyString(categoryNameInputValue)
-      ? `${classes["new-category__input"]} valid`
+      ? `${formClasses["form__input"]} valid`
       : null;
 
   const {
@@ -80,57 +81,6 @@ const NewMovie = (props) => {
       classes={{ categoryNameInputClasses, categoryDescInputClasses }}
       handlers={{ onChangeCategoryNameHandler, onChangeCategoryDescHandler }}
     />
-    // <div className={classes["new-movie"]}>
-    //   {showForm && (
-    //     <form
-    //       onSubmit={submitFormHandler}
-    //       className={classes["new-movie__form"]}
-    //     >
-    //       <div className="form-control">
-    //         <div className="fix-form-validation-msg">
-    //           {categoryNameHasError &&
-    //           notEmptyString(categoryNameInputValue) ? (
-    //             <span className="error-msg">
-    //               Category name must be more than 5 characters
-    //             </span>
-    //           ) : notEmptyString(categoryNameInputValue) ? (
-    //             <span className="success-msg">Category name is valid 😁</span>
-    //           ) : null}
-    //         </div>
-    //         <input
-    //           type="text"
-    //           placeholder="Name"
-    //           className={categoryNameInputClasses}
-    //           value={categoryNameInputValue}
-    //           onChange={onChangeCategoryNameHandler}
-    //         />
-    //       </div>
-    //       <div className="form-control fix-textarea-ltmirror">
-    //         <div className="fix-form-validation-msg">
-    //           {categoryDescHasError &&
-    //           notEmptyString(categoryDescInputValue) ? (
-    //             <span className="error-msg">
-    //               Category name must be more than 10 characters
-    //             </span>
-    //           ) : notEmptyString(categoryDescInputValue) ? (
-    //             <span className="success-msg">
-    //               Category description is valid 😁
-    //             </span>
-    //           ) : null}
-    //         </div>
-    //         <textarea
-    //           placeholder="Description"
-    //           className={`${classes["new-category__textarea"]} ${categoryDescInputClasses}`}
-    //           value={categoryDescInputValue}
-    //           onChange={onChangeCategoryDescHandler}
-    //         ></textarea>
-    //       </div>
-    //       <button type="submit" className="btn btn--primary">
-    //         Add Movie
-    //       </button>
-    //     </form>
-    //   )}
-    // </div>
   );
 };
 

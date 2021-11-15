@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { notEmptyString } from "../../helpers/strings";
 import useForm from "../../hooks/use-form";
@@ -6,7 +6,8 @@ import useInput from "../../hooks/use-input";
 import { categoriesActions } from "../../store/categories-slice";
 import Button from "../UI/Button";
 import Form from "../UI/Form";
-import classes from "./NewCategory.module.scss";
+// import classes from "./NewCategory.module.scss";
+import classes from "../UI/Form.module.scss";
 
 const NewCategory = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,9 @@ const NewCategory = () => {
 
   let categoryNameInputClasses =
     categoryNameHasError && notEmptyString(categoryNameInputValue)
-      ? `${classes["new-category__input"]} invalid`
+      ? `${classes["form__input"]} invalid`
       : notEmptyString(categoryNameInputValue)
-      ? `${classes["new-category__input"]} valid`
+      ? `${classes["form__input"]} valid`
       : null;
 
   const {
@@ -69,7 +70,7 @@ const NewCategory = () => {
   }
 
   return (
-    <div className={classes["new-category"]}>
+    <Fragment>
       {!showForm ? (
         <Button text="Add Category" onClick={showFormHandler} />
       ) : (
@@ -88,7 +89,7 @@ const NewCategory = () => {
           }}
         />
       )}
-    </div>
+    </Fragment>
   );
 };
 

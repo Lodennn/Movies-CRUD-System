@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import snackbarReducer from "./snackbar-slice";
 
 const persistConfig = {
   key: "root",
@@ -21,7 +22,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, categoriesReducer);
 
 const store = configureStore({
-  reducer: { categories: persistedReducer },
+  reducer: { categories: persistedReducer, snackbar: snackbarReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
