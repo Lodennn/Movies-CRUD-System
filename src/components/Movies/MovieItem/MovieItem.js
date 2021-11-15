@@ -55,7 +55,9 @@ const MovieItem = (props) => {
           isMovieUpdated={isMovieUpdatedHandler}
         />
       )}
-      <p className={classes["movie__desc"]}>{description}</p>
+      <p className={classes["movie__desc"]}>
+        {description.substring(0, 100)}...
+      </p>
       <div className={classes["movie__controls"]}>
         <button className="btn btn--edit" onClick={onUpdate}>
           Edit

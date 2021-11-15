@@ -168,3 +168,34 @@ textarea {
   border: none;
   border: 1px solid $color-gray-light-4;
 }
+
+.invalid {
+  background: $color-invalid-background !important;
+  border: 1px solid $color-invalid-border !important;
+}
+.valid {
+  background: $color-valid-background !important;
+  border: 1px solid $color-valid-border !important;
+}
+.error-msg {
+  color: red;
+  margin: 1rem 0;
+  display: block;
+  font-size: 1.1rem;
+}
+
+.success-msg {
+  color: green;
+  margin: 1rem 0;
+  display: block;
+  font-weight: 400;
+}
+
+.fix-form-validation-msg {
+  height: 1rem;
+  margin: 1rem 0;
+}
+
+.fix-textarea-ltmirror {
+  transform: translateY(-2rem);
+}
