@@ -14,6 +14,12 @@ const Movies = (props) => {
 
   const dispatch = useDispatch();
 
+  /**
+   * Update the movie data [Name, Description]
+   * @param {*string} movieId - movieId is used to detect which movie should we update
+   * @implements set the 'editInput' state to 'movieId' so we can detect which movie it is.
+   * @author Khaled Nasser
+   */
   const onUpdateMovieHandler = (movieId) => {
     setEditInput(movieId);
   };
