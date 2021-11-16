@@ -1,12 +1,13 @@
 import MovieUpdateForm from "../../MovieUpdateForm/MovieUpdateForm";
 import classes from "./MovieItem.module.scss";
 import { AiFillStar } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const MovieItem = (props) => {
   const { id, name, description, rate } = props.movie;
   const { onDelete, onUpdate, editInput, categoryId, closeUpdateMode } = props;
   const [activeRateStars, setActiveRateStars] = useState([]);
+  const [inUpdateMovieMode, setInUpdateMovieMode] = useState(false);
 
   useEffect(() => {
     let ratePoints = Math.trunc(rate);
@@ -26,6 +27,7 @@ const MovieItem = (props) => {
 
   const isMovieUpdatedHandler = () => {
     closeUpdateMode("");
+    setInUpdateMovieMode(false);
   };
 
   return (
@@ -48,27 +50,34 @@ const MovieItem = (props) => {
             })}
         </div>
         {id !== +editInput && (
-          <h3 className={classes["movie__name"]}>{name}</h3>
+          <Fragment>
+            <h3 className={classes["movie__name"]}>{name}</h3>
+            <p className={classes["movie__desc"]}>{description}</p>
+          </Fragment>
         )}
         {id === +editInput && (
           <MovieUpdateForm
             categoryId={categoryId}
-            movieId={id}
-            movieName={name}
+            movieData={props.movie}
             isMovieUpdated={isMovieUpdatedHandler}
           />
         )}
-        <p className={classes["movie__desc"]}>
-          {description.substring(0, 100)}...
-        </p>
-        <div className={classes["movie__controls"]}>
-          <button className="btn btn--edit" onClick={onUpdate}>
-            Edit
-          </button>
-          <button className="btn btn--delete" onClick={onDelete}>
-            Delete
-          </button>
-        </div>
+        {!inUpdateMovieMode && (
+          <div className={classes["movie__controls"]}>
+            <button
+              className="btn btn--edit"
+              onClick={() => {
+                onUpdate();
+                setInUpdateMovieMode(true);
+              }}
+            >
+              Edit
+            </button>
+            <button className="btn btn--delete" onClick={onDelete}>
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

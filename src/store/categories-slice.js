@@ -15,7 +15,14 @@ const categoriesSlice = createSlice({
     addCategory(state, action) {
       state.categories = state.categories.concat(action.payload.category);
     },
-    updateCategoryMovies(state, action) {
+    /**
+     * add new movie to specific category
+     * @param {*Object} state
+     * @param {*Object} action #Contains object of categoryId and newMovie data
+     * @returns new State with new movie data updated to the original state
+     * @author Khaled Nasser
+     */
+    addMovieToCategory(state, action) {
       const targetCategoryIndex = state.categories.findIndex(
         (category) => category.id === action.payload.categoryId
       );
@@ -23,6 +30,13 @@ const categoriesSlice = createSlice({
         targetCategoryIndex
       ].movies.concat(action.payload.newMovie);
     },
+    /**
+     * Update the movie data [Name, Description]
+     * @param {*Object} state
+     * @param {*Object} action #Contains object of newName and newDesc of the movie
+     * @returns new State with new movie data updated to the original state
+     * @author Khaled Nasser
+     */
     updateMovie(state, action) {
       const targetCategoryIndex = state.categories.findIndex(
         (category) => category.id === action.payload.categoryId
@@ -34,6 +48,7 @@ const categoriesSlice = createSlice({
       state.categories[targetCategoryIndex].movies[targetMovieIndex] = {
         ...state.categories[targetCategoryIndex].movies[targetMovieIndex],
         name: action.payload.newName,
+        description: action.payload.newDesc,
       };
     },
     deleteMovie(state, action) {

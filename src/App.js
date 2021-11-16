@@ -7,6 +7,7 @@ import SnackBar from "./components/UI/Snackbar";
 
 function App() {
   const snackbar = useSelector((state) => state.snackbar);
+
   return (
     <Fragment>
       <SnackBar type={snackbar.type} message={snackbar.message} />

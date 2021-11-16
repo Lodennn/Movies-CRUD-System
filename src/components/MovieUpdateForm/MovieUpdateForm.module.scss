@@ -2,13 +2,18 @@
 
 .movie-update-form {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   @include respond(phone) {
     flex-direction: column;
     gap: 1rem;
   }
+  &__textarea {
+    resize: none;
+    height: 10rem;
+  }
   &__controls {
     display: flex;
-    margin-left: 2rem;
     @include respond(phone) {
       flex-direction: column;
       margin-left: 0rem;

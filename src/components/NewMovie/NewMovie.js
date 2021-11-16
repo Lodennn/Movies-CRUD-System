@@ -4,7 +4,6 @@ import useForm from "../../hooks/use-form";
 import useInput from "../../hooks/use-input";
 import { categoriesActions } from "../../store/categories-slice";
 import Form from "../UI/Form";
-import classes from "./NewMovie.module.scss";
 import formClasses from "../UI/Form.module.scss";
 import { snackbarActions } from "../../store/snackbar-slice";
 
@@ -51,6 +50,17 @@ const NewMovie = (props) => {
     dispatchAddMovieAction
   );
 
+  function dispatchAddMovieAction() {
+    dispatch(categoriesActions.addMovieToCategory({ categoryId, newMovie }));
+    dispatch(
+      snackbarActions.showSnackBar({
+        type: "success",
+        message: "Movie Added Successfully",
+      })
+    );
+    hideForm();
+  }
+
   const newMovie = {
     // NOT RECOMMENDED - GENERATING DYNAMIC ID
     id: Math.random() + new Date().getTime(),
@@ -59,17 +69,11 @@ const NewMovie = (props) => {
     rate: generateRandomRating(),
   };
 
-  function dispatchAddMovieAction() {
-    dispatch(categoriesActions.updateCategoryMovies({ categoryId, newMovie }));
-    hideForm();
-    dispatch(
-      snackbarActions.showSnackBar({
-        type: "success",
-        message: "Movie Added Successfully",
-      })
-    );
-  }
-
+  /**
+   * generate random rating to movie
+   * @returns generated random rate number out of 5
+   * @author Khaled Nasser
+   */
   function generateRandomRating() {
     let max = 5;
     let randomRate = (Math.random() * max).toFixed(1);

@@ -1,33 +1,74 @@
-import { useRef, useState } from "react";
+import { useReducer } from "react";
 import { useDispatch } from "react-redux";
+import { movieDescValidator, movieNameValidator } from "../../helpers/validate";
 import { categoriesActions } from "../../store/categories-slice";
 import { snackbarActions } from "../../store/snackbar-slice";
 import classes from "./MovieUpdateForm.module.scss";
 
 const MovieUpdateForm = (props) => {
-  const { movieId, categoryId, isMovieUpdated, movieName } = props;
+  const { categoryId, isMovieUpdated } = props;
 
-  const [movieNameInput, setMovieNameInput] = useState(movieName);
+  //prettier-ignore
+  const {id: movieId, name: movieName, description: movieDescription} = props.movieData;
 
-  const movieNameInputChangeHandler = (e) => {
-    setMovieNameInput(e.target.value);
+  const initialState = {
+    movieNameInput: movieName,
+    movieDescInput: movieDescription,
+    movieNameIsTouched: false,
+    movieDescIsTouched: false,
   };
 
-  const nameInputRef = useRef();
+  const updateReducer = (state = initialState, action) => {
+    if (action.type === "CHANGE_NAME") {
+      return {
+        ...state,
+        movieNameInput: action.value,
+        movieNameIsTouched: true,
+      };
+    }
+    if (action.type === "CHANGE_DESC") {
+      return {
+        ...state,
+        movieDescInput: action.value,
+        movieDescIsTouched: true,
+      };
+    }
+    return state;
+  };
+
+  const [updateData, dispatchUpdate] = useReducer(updateReducer, initialState);
+
+  let movieNameHasError = !movieNameValidator(updateData.movieNameInput);
+  let movieDescHasError = !movieDescValidator(updateData.movieDescInput);
+
+  let categoryNameInputClasses = movieNameHasError
+    ? `${classes["form__input"]} invalid`
+    : null;
+
+  let categoryDescInputClasses = movieDescHasError ? `invalid` : null;
+
+  const movieNameInputChangeHandler = (e) => {
+    dispatchUpdate({ type: "CHANGE_NAME", value: e.target.value });
+  };
+  const movieDescInputChangeHandler = (e) => {
+    dispatchUpdate({ type: "CHANGE_DESC", value: e.target.value });
+  };
 
   const dispatch = useDispatch();
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    const enteredInputValue = nameInputRef.current.value;
-
-    if (enteredInputValue.trim().length > 0) {
+    if (
+      movieNameValidator(updateData.movieNameInput) &&
+      movieDescValidator(updateData.movieDescInput)
+    ) {
       dispatch(
         categoriesActions.updateMovie({
           movieId,
           categoryId,
-          newName: enteredInputValue,
+          newName: updateData.movieNameInput,
+          newDesc: updateData.movieDescInput,
         })
       );
       dispatch(
@@ -37,6 +78,13 @@ const MovieUpdateForm = (props) => {
         })
       );
       isMovieUpdated(true);
+    } else {
+      dispatch(
+        snackbarActions.showSnackBar({
+          type: "error",
+          message: "Please enter a valid data",
+        })
+      );
     }
   };
 
@@ -47,14 +95,19 @@ const MovieUpdateForm = (props) => {
   return (
     <form onSubmit={formSubmitHandler} className={classes["movie-update-form"]}>
       <input
-        ref={nameInputRef}
-        className={classes["movie-update-form__input"]}
+        className={categoryNameInputClasses}
         type="text"
         placeholder="Enter new name"
-        value={movieNameInput}
+        value={updateData.movieNameInput}
         onChange={movieNameInputChangeHandler}
         autoFocus={true}
       />
+      <textarea
+        className={`${classes["movie-update-form__textarea"]} ${categoryDescInputClasses}`}
+        placeholder="Enter new description"
+        value={updateData.movieDescInput}
+        onChange={movieDescInputChangeHandler}
+      ></textarea>
       <div className={classes["movie-update-form__controls"]}>
         <button type="submit" className="btn btn--edit btn--half-width">
           OK

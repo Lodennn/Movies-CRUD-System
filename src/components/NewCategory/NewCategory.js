@@ -67,13 +67,18 @@ const NewCategory = () => {
         category: newCategory,
       })
     );
-    hideFormHandler();
     dispatch(
       snackbarActions.showSnackBar({
         type: "success",
         message: "Category Added Successfully",
       })
     );
+    hideFormHandler();
+    clearInputs();
+  }
+  function clearInputs() {
+    onResetCategoryNameHandler();
+    onResetCategoryDescHandler();
   }
 
   return (

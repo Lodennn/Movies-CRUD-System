@@ -9,6 +9,7 @@ const inputReducer = (state = initialState, action) => {
   if (action.type === "CHANGE") {
     return { value: action.value, isTouched: true };
   }
+
   if (action.type === "RESET") {
     return { value: "", isTouched: false };
   }
@@ -19,10 +20,8 @@ const useInput = (validate) => {
   const [inputData, dispatch] = useReducer(inputReducer, initialState);
 
   const isValid = validate(inputData.value);
-  console.log(validate(inputData.value));
 
   const hasError = !isValid;
-  console.log(hasError);
 
   const onChangeInputHandler = (e) => {
     dispatch({ type: "CHANGE", value: e.target.value });

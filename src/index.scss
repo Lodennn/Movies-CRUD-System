@@ -45,7 +45,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-////////////////
+
+/* GLOBAL STYLING ################################################# */
+// =======================================
+// BASE MARKUP
 .btn {
   color: $color-white;
   text-transform: uppercase;
@@ -73,7 +76,6 @@ code {
     margin-right: 1rem;
   }
 }
-
 input,
 textarea {
   padding: 0.5rem 1rem;
@@ -85,7 +87,15 @@ textarea {
     outline: 1px solid $color-primary;
   }
 }
-////////////////
+
+// =======================================
+/// UTILITES
+.show-category {
+  display: block;
+}
+.hide-category {
+  display: none;
+}
 .wrapper__special {
   position: relative;
   &--main-element {
@@ -104,7 +114,6 @@ textarea {
     z-index: 1;
   }
 }
-
 .title {
   margin-top: 1rem;
   margin-bottom: 4rem;
@@ -112,28 +121,12 @@ textarea {
   font-weight: 400;
   font-size: 2.5rem;
 }
-
-.show-category {
-  display: block;
-}
-.hide-category {
-  display: none;
-}
-.fix-icon {
-  transform: translateY(2px);
-}
-::-webkit-input-placeholder {
-  color: $color-gray-light-2;
-}
-
-/// UTILITES
 .btn-pos-right {
   float: initial;
   position: absolute;
   top: 3rem;
   right: 4rem;
 }
-
 .mt-xs {
   margin-top: 1rem;
 }
@@ -169,6 +162,8 @@ textarea {
   border: 1px solid $color-gray-light-4;
 }
 
+// =======================================
+// FORM VALIDATIONS
 .invalid {
   background: $color-invalid-background !important;
   border: 1px solid $color-invalid-border !important;
@@ -183,7 +178,6 @@ textarea {
   display: block;
   font-size: 1.1rem;
 }
-
 .success-msg {
   color: green;
   margin: 1rem 0;
@@ -192,18 +186,28 @@ textarea {
   font-size: 1.1rem;
 }
 
+// =======================================
+// FIX MARKUP ISSUES
 .fix-form-validation-msg {
   height: 1rem;
   margin: 1rem 0;
 }
-
 .fix-textarea-ltmirror {
   transform: translateY(-2rem);
 }
-
+.fix-icon {
+  transform: translateY(2px);
+}
+::-webkit-input-placeholder {
+  color: $color-gray-light-2;
+}
 .animated-movie {
   animation: popup 0.5s ease forwards;
+  margin-bottom: 4rem;
 }
+
+// =======================================
+// ANIMATIONS
 @keyframes popup {
   0% {
     transform: scale(0);
@@ -218,3 +222,4 @@ textarea {
     z-index: 9;
   }
 }
+/* GLOBAL STYLING ################################################# */
