@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# SrvKee Task
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Used Packages
 
-In the project directory, you can run:
+### `Redux`
 
-### `npm start`
+I've used Redux as a wide-state managemenet system to handle global state through the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `Redux Toolkit`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I've used Redux Toolkit to take advantage of `immer` and the flexible functionalities of Redux Toolkit package.
 
-### `npm test`
+### `Redux Persist`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Redux Persist is my favorite when it comes to caching data into storage so i've used `Redux Persist` to handle my 
+localStorage through it.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Full CRUD System`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The user can create, read, update and delete movies and categories in an easy way with a real good ui design.
 
-### `npm run eject`
+### `SnackBar`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I've created a `SnackBar` logic to inform the user what is happening in the system when he interacts with our system.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Validations`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+I've added a validation system for each `Form` to make the system secure and to make sure that the user deals with the
+system in a right way.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Technologies[Development]
 
-## Learn More
+### `Custom Hooks`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I've created two main custom hooks which helped me out in `Form` especially `use-input` and `use-form` which
+saved me alot of time, made me avoid `DRY` Principle, and it makes things really dynamic.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `SASS`
 
-### Code Splitting
+I've used sass as css pre-processor to manage my styling in an efficient and fast way and it was really helpful.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `Git/Github`
 
-### Analyzing the Bundle Size
+I've used Git as a version controller to trace my project files and to make it organized.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### `Dynamic Responsive Design`
 
-### Making a Progressive Web App
+I've used sass to manage my responsive design(based on fonts) by adding `mixins` that takes a parameter of screen-width
+and for that it detects which style i want to add as content.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## `UI Design`
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For UI Design I've used `Adobe XD` to design the UI to make it easier to imagine the system and the styling in development process.
