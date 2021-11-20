@@ -5,6 +5,13 @@ const initialState = {
   isTouched: false,
 };
 
+/**
+ * useInput Hook help you to set basic configurations of input to avoid DRY principle its accept a function that validate
+ * the input and the hook receive the input value based on 'onChange' event
+ * @param {*Callback Function} validate
+ * @returns input data {value, isValid, hasError, onChange, onReset}
+ * @author Khaled Nasser
+ */
 const inputReducer = (state = initialState, action) => {
   if (action.type === "CHANGE") {
     return { value: action.value, isTouched: true };

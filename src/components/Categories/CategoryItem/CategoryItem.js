@@ -1,12 +1,11 @@
-import { Fragment } from "react/cjs/react.production.min";
+import { Fragment, useState } from "react";
 import { isArrayEmpty } from "../../../helpers/arrays";
 import Movies from "../../Movies/Movies";
 import NewMovie from "../../NewMovie/NewMovie";
-import classes from "./CategoryItem.module.scss";
-import { FaBarcode, FaChevronDown } from "react-icons/fa";
 import Wrapper from "../../UI/Wrapper";
 import Button from "../../UI/Button";
-import { useState } from "react";
+import { FaBarcode, FaChevronDown } from "react-icons/fa";
+import classes from "./CategoryItem.module.scss";
 
 const CategoryItem = (props) => {
   const { activeCategoryClass, onClick } = props;

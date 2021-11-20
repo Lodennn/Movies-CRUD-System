@@ -1,17 +1,18 @@
+import { FORM_CATEGORY } from "../../helpers/constants";
 import { notEmptyString } from "../../helpers/strings";
 import classes from "./Form.module.scss";
 
 const Form = (props) => {
   const {
-    formData: { showForm, submitFormHandler },
+    formData: { showForm, submitFormHandler, formFor },
     inputData: {
-      categoryNameHasError,
-      categoryDescHasError,
-      categoryNameInputValue,
-      categoryDescInputValue,
+      nameHasError,
+      descriptionHasError,
+      nameInputValue,
+      descriptionInputValue,
     },
-    classes: { categoryNameInputClasses, categoryDescInputClasses },
-    handlers: { onChangeCategoryNameHandler, onChangeCategoryDescHandler },
+    classes: { nameInputClasses, descriptionInputClasses },
+    handlers: { onChangeNameHandler, onChangeDescriptionHandler },
   } = props;
   return (
     <div className={classes["form"]}>
@@ -19,45 +20,49 @@ const Form = (props) => {
         <form onSubmit={submitFormHandler} className={classes["form__form"]}>
           <div className="form-control">
             <div className="fix-form-validation-msg">
-              {categoryNameHasError &&
-              notEmptyString(categoryNameInputValue) ? (
+              {nameHasError && notEmptyString(nameInputValue) ? (
                 <span className="error-msg">
-                  Category name must be more than 5 characters
+                  {formFor === FORM_CATEGORY ? "Category" : "Movie"} name must
+                  be more than 5 characters
                 </span>
-              ) : notEmptyString(categoryNameInputValue) ? (
-                <span className="success-msg">Category name is valid 😁</span>
+              ) : notEmptyString(nameInputValue) ? (
+                <span className="success-msg">
+                  {formFor === FORM_CATEGORY ? "Category" : "Movie"} name is
+                  valid 😁
+                </span>
               ) : null}
             </div>
             <input
               type="text"
               placeholder="Name"
-              className={categoryNameInputClasses}
-              value={categoryNameInputValue}
-              onChange={onChangeCategoryNameHandler}
+              className={nameInputClasses}
+              value={nameInputValue}
+              onChange={onChangeNameHandler}
             />
           </div>
           <div className="form-control fix-textarea-ltmirror">
             <div className="fix-form-validation-msg">
-              {categoryDescHasError &&
-              notEmptyString(categoryDescInputValue) ? (
+              {descriptionHasError && notEmptyString(descriptionInputValue) ? (
                 <span className="error-msg">
-                  Category name must be more than 10 characters
+                  {formFor === FORM_CATEGORY ? "Category" : "Movie"} description
+                  must be more than 10 characters
                 </span>
-              ) : notEmptyString(categoryDescInputValue) ? (
+              ) : notEmptyString(descriptionInputValue) ? (
                 <span className="success-msg">
-                  Category description is valid 😁
+                  {formFor === FORM_CATEGORY ? "Category" : "Movie"} description
+                  is valid 😁
                 </span>
               ) : null}
             </div>
             <textarea
               placeholder="Description"
-              className={`${classes["form__textarea"]} ${categoryDescInputClasses}`}
-              value={categoryDescInputValue}
-              onChange={onChangeCategoryDescHandler}
+              className={`${classes["form__textarea"]} ${descriptionInputClasses}`}
+              value={descriptionInputValue}
+              onChange={onChangeDescriptionHandler}
             ></textarea>
           </div>
           <button type="submit" className="btn btn--primary">
-            Add
+            Add {formFor === FORM_CATEGORY ? "Category" : "Movie"}
           </button>
         </form>
       )}

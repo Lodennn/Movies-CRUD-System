@@ -28,7 +28,6 @@
     transition: all 0.3s ease;
     @include respond(phone) {
       padding-top: 9rem;
-      padding-inline: 1rem;
     }
     &-item {
       position: relative;

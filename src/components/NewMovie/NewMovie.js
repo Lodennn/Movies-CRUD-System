@@ -1,11 +1,16 @@
 import { useDispatch } from "react-redux";
-import { notEmptyString } from "../../helpers/strings";
 import useForm from "../../hooks/use-form";
 import useInput from "../../hooks/use-input";
 import { categoriesActions } from "../../store/categories-slice";
-import Form from "../UI/Form";
-import formClasses from "../UI/Form.module.scss";
 import { snackbarActions } from "../../store/snackbar-slice";
+import Form from "../UI/Form";
+import { notEmptyString } from "../../helpers/strings";
+import { FORM_MOVIE } from "../../helpers/constants";
+import formClasses from "../UI/Form.module.scss";
+import {
+  inputNameValidator,
+  inputDescriptionValidator,
+} from "../../helpers/validate";
 
 const NewMovie = (props) => {
   const { categoryId, hideForm, showForm } = props;
@@ -13,39 +18,39 @@ const NewMovie = (props) => {
   const dispatch = useDispatch();
 
   const {
-    value: categoryNameInputValue,
-    isValid: categoryNameIsValid,
-    hasError: categoryNameHasError,
-    onChangeHandler: onChangeCategoryNameHandler,
-  } = useInput((value) => value.trim().length >= 4);
+    value: nameInputValue,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    onChangeHandler: onChangeNameHandler,
+  } = useInput(inputNameValidator);
 
-  let categoryNameInputClasses =
-    categoryNameHasError && notEmptyString(categoryNameInputValue)
+  let nameInputClasses =
+    nameHasError && notEmptyString(nameInputValue)
       ? `${formClasses["form__input"]} invalid`
-      : notEmptyString(categoryNameInputValue)
+      : notEmptyString(nameInputValue)
       ? `${formClasses["form__input"]} valid`
       : null;
 
   const {
-    value: categoryDescInputValue,
-    isValid: categoryDescIsValid,
-    hasError: categoryDescHasError,
-    onChangeHandler: onChangeCategoryDescHandler,
-  } = useInput((value) => value.trim().length >= 10);
+    value: descriptionInputValue,
+    isValid: descriptionIsValid,
+    hasError: descriptionHasError,
+    onChangeHandler: onChangeDescriptionHandler,
+  } = useInput(inputDescriptionValidator);
 
-  let categoryDescInputClasses =
-    categoryDescHasError && notEmptyString(categoryDescInputValue)
+  let descriptionInputClasses =
+    descriptionHasError && notEmptyString(descriptionInputValue)
       ? `invalid`
-      : notEmptyString(categoryDescInputValue)
+      : notEmptyString(descriptionInputValue)
       ? `valid`
       : null;
 
   const { submitFormHandler } = useForm(
     {
-      categoryNameIsValid,
-      categoryDescIsValid,
-      categoryNameInputValue,
-      categoryDescInputValue,
+      nameIsValid,
+      descriptionIsValid,
+      nameInputValue,
+      descriptionInputValue,
     },
     dispatchAddMovieAction
   );
@@ -64,8 +69,8 @@ const NewMovie = (props) => {
   const newMovie = {
     // NOT RECOMMENDED - GENERATING DYNAMIC ID
     id: Math.random() + new Date().getTime(),
-    name: categoryNameInputValue,
-    description: categoryDescInputValue,
+    name: nameInputValue,
+    description: descriptionInputValue,
     rate: generateRandomRating(),
   };
 
@@ -82,15 +87,15 @@ const NewMovie = (props) => {
 
   return (
     <Form
-      formData={{ showForm, submitFormHandler }}
+      formData={{ showForm, submitFormHandler, formFor: FORM_MOVIE }}
       inputData={{
-        categoryNameHasError,
-        categoryDescHasError,
-        categoryNameInputValue,
-        categoryDescInputValue,
+        nameHasError,
+        descriptionHasError,
+        nameInputValue,
+        descriptionInputValue,
       }}
-      classes={{ categoryNameInputClasses, categoryDescInputClasses }}
-      handlers={{ onChangeCategoryNameHandler, onChangeCategoryDescHandler }}
+      classes={{ nameInputClasses, descriptionInputClasses }}
+      handlers={{ onChangeNameHandler, onChangeDescriptionHandler }}
     />
   );
 };

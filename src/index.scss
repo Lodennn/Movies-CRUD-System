@@ -35,10 +35,15 @@ body {
     $color-primary,
     $color-primary-dark
   );
+  background-repeat: no-repeat;
   padding: 5rem;
   box-sizing: border-box;
   font-weight: 400;
   color: $color-gray-dark;
+  min-height: 100vh;
+  @include respond(phone) {
+    padding-inline: 1rem;
+  }
 }
 
 code {
@@ -60,6 +65,7 @@ code {
   cursor: pointer;
   @include respond(phone) {
     width: auto;
+    font-size: 1.5rem;
   }
   &--primary {
     background: $color-primary;
@@ -120,6 +126,9 @@ textarea {
   font-family: $font-primary;
   font-weight: 400;
   font-size: 2.5rem;
+  @include respond(phone) {
+    margin-top: 2rem;
+  }
 }
 .btn-pos-right {
   float: initial;

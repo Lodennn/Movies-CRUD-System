@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Wrapper from "../UI/Wrapper";
-import classes from "./Categories.module.scss";
-import CategoryItem from "./CategoryItem/CategoryItem";
 import { useSelector } from "react-redux";
+import Wrapper from "../UI/Wrapper";
+import CategoryItem from "./CategoryItem/CategoryItem";
+import classes from "./Categories.module.scss";
 
 const Categories = (props) => {
   const { categories } = useSelector((state) => state.categories);
@@ -10,7 +10,11 @@ const Categories = (props) => {
   const [activeCategory, setActiveCategory] = useState(0);
 
   const addActiveCategoryClass = (categoryIndex, e) => {
-    setActiveCategory(categoryIndex);
+    if (activeCategory === categoryIndex) {
+      setActiveCategory(-1);
+    } else {
+      setActiveCategory(categoryIndex);
+    }
   };
 
   return (

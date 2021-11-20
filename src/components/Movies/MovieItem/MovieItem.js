@@ -1,7 +1,7 @@
+import { Fragment, useEffect, useState } from "react";
 import MovieUpdateForm from "../../MovieUpdateForm/MovieUpdateForm";
 import classes from "./MovieItem.module.scss";
 import { AiFillStar } from "react-icons/ai";
-import { Fragment, useEffect, useState } from "react";
 
 const MovieItem = (props) => {
   const { id, name, description, rate } = props.movie;

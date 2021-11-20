@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Fragment } from "react/cjs/react.production.min";
 import { isArrayEmpty } from "../../helpers/arrays";
 import { categoriesActions } from "../../store/categories-slice";
 import { snackbarActions } from "../../store/snackbar-slice";

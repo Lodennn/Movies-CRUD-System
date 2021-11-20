@@ -14,6 +14,11 @@
       @content;
     }
   }
+  @if $bp == tab-large {
+    @media screen and (max-width: 75em) {
+      @content;
+    }
+  }
   @if $bp == big-desktop {
     @media screen and (min-width: 112.5em) {
       @content;

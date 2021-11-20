@@ -7,49 +7,53 @@ import { categoriesActions } from "../../store/categories-slice";
 import { snackbarActions } from "../../store/snackbar-slice";
 import Button from "../UI/Button";
 import Form from "../UI/Form";
-// import classes from "./NewCategory.module.scss";
 import classes from "../UI/Form.module.scss";
+import { FORM_CATEGORY } from "../../helpers/constants";
+import {
+  inputNameValidator,
+  inputDescriptionValidator,
+} from "../../helpers/validate";
 
 const NewCategory = () => {
   const dispatch = useDispatch();
 
   const {
-    value: categoryNameInputValue,
-    isValid: categoryNameIsValid,
-    hasError: categoryNameHasError,
-    onChangeHandler: onChangeCategoryNameHandler,
-    onResetHandler: onResetCategoryNameHandler,
-  } = useInput((value) => value.trim().length >= 4);
+    value: nameInputValue,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    onChangeHandler: onChangeNameHandler,
+    onResetHandler: onResetNameHandler,
+  } = useInput(inputNameValidator);
 
-  let categoryNameInputClasses =
-    categoryNameHasError && notEmptyString(categoryNameInputValue)
+  let nameInputClasses =
+    nameHasError && notEmptyString(nameInputValue)
       ? `${classes["form__input"]} invalid`
-      : notEmptyString(categoryNameInputValue)
+      : notEmptyString(nameInputValue)
       ? `${classes["form__input"]} valid`
       : null;
 
   const {
-    value: categoryDescInputValue,
-    isValid: categoryDescIsValid,
-    hasError: categoryDescHasError,
-    onChangeHandler: onChangeCategoryDescHandler,
-    onResetHandler: onResetCategoryDescHandler,
-  } = useInput((value) => value.trim().length >= 10);
+    value: descriptionInputValue,
+    isValid: descriptionIsValid,
+    hasError: descriptionHasError,
+    onChangeHandler: onChangeDescriptionHandler,
+    onResetHandler: onResetDescHandler,
+  } = useInput(inputDescriptionValidator);
 
-  let categoryDescInputClasses =
-    categoryDescHasError && notEmptyString(categoryDescInputValue)
+  let descriptionInputClasses =
+    descriptionHasError && notEmptyString(descriptionInputValue)
       ? `invalid`
-      : notEmptyString(categoryDescInputValue)
+      : notEmptyString(descriptionInputValue)
       ? `valid`
       : null;
 
   const { showForm, hideFormHandler, showFormHandler, submitFormHandler } =
     useForm(
       {
-        categoryNameIsValid,
-        categoryDescIsValid,
-        categoryNameInputValue,
-        categoryDescInputValue,
+        nameIsValid,
+        descriptionIsValid,
+        nameInputValue,
+        descriptionInputValue,
       },
       dispatchAddCategoryAction
     );
@@ -57,8 +61,8 @@ const NewCategory = () => {
   const newCategory = {
     // NOT RECOMMENDED - AUTO GENERATING DYNAMIC ID
     id: Math.random() + new Date().getTime(),
-    name: categoryNameInputValue,
-    desc: categoryDescInputValue,
+    name: nameInputValue,
+    desc: descriptionInputValue,
     movies: [],
   };
   function dispatchAddCategoryAction() {
@@ -76,9 +80,10 @@ const NewCategory = () => {
     hideFormHandler();
     clearInputs();
   }
+
   function clearInputs() {
-    onResetCategoryNameHandler();
-    onResetCategoryDescHandler();
+    onResetNameHandler();
+    onResetDescHandler();
   }
 
   return (
@@ -87,17 +92,17 @@ const NewCategory = () => {
         <Button text="Add Category" onClick={showFormHandler} />
       ) : (
         <Form
-          formData={{ showForm, submitFormHandler }}
+          formData={{ showForm, submitFormHandler, formFor: FORM_CATEGORY }}
           inputData={{
-            categoryNameHasError,
-            categoryDescHasError,
-            categoryNameInputValue,
-            categoryDescInputValue,
+            nameHasError,
+            descriptionHasError,
+            nameInputValue,
+            descriptionInputValue,
           }}
-          classes={{ categoryNameInputClasses, categoryDescInputClasses }}
+          classes={{ nameInputClasses, descriptionInputClasses }}
           handlers={{
-            onChangeCategoryNameHandler,
-            onChangeCategoryDescHandler,
+            onChangeNameHandler,
+            onChangeDescriptionHandler,
           }}
         />
       )}

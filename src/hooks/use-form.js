@@ -2,6 +2,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { snackbarActions } from "../store/snackbar-slice";
 
+/**
+ * useForm Hook help you to set basic configurations of form to avoid DRY principle its accept the input data that form needed
+ * and dispatch an action based on the nature of received data
+ * @param {*object} inputData
+ * @param {*Callback Function} action
+ * @returns form data and status if it displayed or not and the submit form function
+ * @author Khaled Nasser
+ */
 const useForm = (inputData, action) => {
   const [showForm, setShowForm] = useState(false);
   const dispatch = useDispatch();
@@ -15,7 +23,7 @@ const useForm = (inputData, action) => {
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-    if (inputData.categoryNameIsValid && inputData.categoryDescIsValid) {
+    if (inputData.nameIsValid && inputData.descriptionIsValid) {
       action();
     } else {
       dispatch(

@@ -9,11 +9,8 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState: initialState,
   reducers: {
-    loadCategories(state, action) {
-      state.categories = action.payload.categories;
-    },
     addCategory(state, action) {
-      state.categories = state.categories.concat(action.payload.category);
+      state.categories = [...state.categories, action.payload.category];
     },
     /**
      * add new movie to specific category
@@ -26,9 +23,10 @@ const categoriesSlice = createSlice({
       const targetCategoryIndex = state.categories.findIndex(
         (category) => category.id === action.payload.categoryId
       );
-      state.categories[targetCategoryIndex].movies = state.categories[
-        targetCategoryIndex
-      ].movies.concat(action.payload.newMovie);
+      state.categories[targetCategoryIndex].movies = [
+        action.payload.newMovie,
+        ...state.categories[targetCategoryIndex].movies,
+      ];
     },
     /**
      * Update the movie data [Name, Description]

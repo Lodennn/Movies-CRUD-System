@@ -17,3 +17,11 @@ export function movieNameValidator(value) {
 export function movieDescValidator(value) {
   return value.trim().length >= 10;
 }
+
+export function inputNameValidator(value) {
+  return value.trim().length >= 4;
+}
+
+export function inputDescriptionValidator(value) {
+  return value.trim().length >= 10;
+}
