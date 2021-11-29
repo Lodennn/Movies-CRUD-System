@@ -7,7 +7,6 @@ const MovieItem = (props) => {
   const { id, name, description, rate } = props.movie;
   const { onDelete, onUpdate, editInput, categoryId, closeUpdateMode } = props;
   const [activeRateStars, setActiveRateStars] = useState([]);
-  const [inUpdateMovieMode, setInUpdateMovieMode] = useState(false);
 
   useEffect(() => {
     let ratePoints = Math.trunc(rate);
@@ -27,7 +26,6 @@ const MovieItem = (props) => {
 
   const isMovieUpdatedHandler = () => {
     closeUpdateMode("");
-    setInUpdateMovieMode(false);
   };
 
   return (
@@ -49,34 +47,25 @@ const MovieItem = (props) => {
               );
             })}
         </div>
-        {id !== +editInput && (
+        {id !== +editInput ? (
           <Fragment>
             <h3 className={classes["movie__name"]}>{name}</h3>
             <p className={classes["movie__desc"]}>{description}</p>
+            <div className={classes["movie__controls"]}>
+              <button className="btn btn--edit" onClick={onUpdate.bind(null)}>
+                Edit
+              </button>
+              <button className="btn btn--delete" onClick={onDelete}>
+                Delete
+              </button>
+            </div>
           </Fragment>
-        )}
-        {id === +editInput && (
+        ) : (
           <MovieUpdateForm
             categoryId={categoryId}
             movieData={props.movie}
             isMovieUpdated={isMovieUpdatedHandler}
           />
-        )}
-        {!inUpdateMovieMode && (
-          <div className={classes["movie__controls"]}>
-            <button
-              className="btn btn--edit"
-              onClick={() => {
-                onUpdate();
-                setInUpdateMovieMode(true);
-              }}
-            >
-              Edit
-            </button>
-            <button className="btn btn--delete" onClick={onDelete}>
-              Delete
-            </button>
-          </div>
         )}
       </div>
     </div>
